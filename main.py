@@ -246,5 +246,5 @@ def ischeck(x,y):
         if board[i][x]=='bq' or board[i][x]=='br':
             return True
     x1,y1=x,y
-
+    #TODO wraht check checking for bishop and queen by using  while algorithm x+1 y+1, x-1 y-1, x+1,y-1,y+1 x-1
 
