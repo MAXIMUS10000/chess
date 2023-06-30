@@ -173,78 +173,118 @@ def queen(x1, y1, x2, y2):
         print(move)
 
     return move
-def ischeck(x,y):
 
+def king(x1,y1,x2,y2):
+    if ((abs(x1-x2)==1 and abs(y1-y2)==1) or (abs(x1-x2)==1 and abs(y1-y2)==0) or (abs(x1-x2)==0 and abs(y1-y2)==1)) and not ischeck(x2,y2):
+        return True
+def ischeck(x, y):
+    # returns True if check exist
+    if board[y-1][x+1]=='bp' or board[y-1][x-1]=='bp':
+        return True
+    if board[y+1][x+1]=='bk' or board[y-1][x-1]=='bk' or board[y-1][x+1]=='bk' or board[y+1][x-1]=='bk' or board[y][x+1]=='bk' or board[y][x-1]=='bk'or board[y+1][x]=='bk' or board[y-1][x]=='bk':
+        return True
+    x, y = y, x
     try:
-        if board[x+1][y+2]=='wn':
+        if board[x + 1][y + 2] == 'wn':
             return True
     except:
         pass
     try:
-        if board[x+2][y+1]=='wn':
+        if board[x + 2][y + 1] == 'wn':
             return True
     except:
         pass
     try:
-        if board[x+2][y-1]=='wn':
+        if board[x + 2][y - 1] == 'wn':
             return True
     except:
         pass
     try:
-        if board[x+1][y-2]=='wn':
+        if board[x + 1][y - 2] == 'wn':
             return True
     except:
         pass
     try:
-        if board[x-1][y-2]=='wn':
+        if board[x - 1][y - 2] == 'wn':
             return True
     except:
         pass
     try:
-        if board[x-2][y-1]=='wn':
+        if board[x - 2][y - 1] == 'wn':
             return True
     except:
         pass
     try:
-        if board[x-2][y+1]=='wn':
+        if board[x - 2][y + 1] == 'wn':
             return True
     except:
         pass
     try:
-        if board[x-2][y-1]=='wn':
+        if board[x - 2][y - 1] == 'wn':
             return True
     except:
         pass
     try:
-        if board[x-2][y-1]=='wn':
+        if board[x - 2][y - 1] == 'wn':
             return True
     except:
         pass
     try:
-        if board[x-1][y+2]=='wn':
+        if board[x - 1][y + 2] == 'wn':
             return True
     except:
         pass
-    for i in range(x,0,-1):
-        if 'w' in board[y][i] or board[y][i]=='bn' or board[y][i]=='bp' or  board[y][i]=='bk' or board[y][i]=='bb':
+    x, y = y, x
+    for i in range(x, 0, -1):
+        if 'w' in board[y][i] or board[y][i] == 'bn' or board[y][i] == 'bp' or board[y][i] == 'bk' or board[y][
+            i] == 'bb':
             break
-        if board[y][i]=='bq' or board[y][i]=='br':
+        if board[y][i] == 'bq' or board[y][i] == 'br':
             return True
-    for i in range(x,8):
-        if 'w' in board[y][i] or board[y][i]=='bn' or board[y][i]=='bp' or  board[y][i]=='bk' or board[y][i]=='bb':
+    for i in range(x, 8):
+        if 'w' in board[y][i] or board[y][i] == 'bn' or board[y][i] == 'bp' or board[y][i] == 'bk' or board[y][
+            i] == 'bb':
             break
-        if board[y][i]=='bq' or board[y][i]=='br':
+        if board[y][i] == 'bq' or board[y][i] == 'br':
             return True
-    for i in range(y,0,-1):
-        if 'w' in board[i][x] or board[i][x]=='bn' or board[i][x]=='bp' or  board[i][x]=='bk' or board[i][x]=='bb':
+    for i in range(y, 0, -1):
+        if 'w' in board[i][x] or board[i][x] == 'bn' or board[i][x] == 'bp' or board[i][x] == 'bk' or board[i][
+            x] == 'bb':
             break
-        if board[i][x]=='bq' or board[i][x]=='br':
+        if board[i][x] == 'bq' or board[i][x] == 'br':
             return True
-    for i in range(y,8):
-        if 'w' in board[i][x] or board[i][x]=='bn' or board[i][x]=='bp' or  board[i][x]=='bk' or board[i][x]=='bb':
+    for i in range(y, 8):
+        if 'w' in board[i][x] or board[i][x] == 'bn' or board[i][x] == 'bp' or board[i][x] == 'bk' or board[i][
+            x] == 'bb':
             break
-        if board[i][x]=='bq' or board[i][x]=='br':
+        if board[i][x] == 'bq' or board[i][x] == 'br':
             return True
-    x1,y1=x,y
-    #TODO wraht check checking for bishop and queen by using  while algorithm x+1 y+1, x-1 y-1, x+1,y-1,y+1 x-1
-
+    x1, y1 = x, y
+    while x1 < 8 and y1 < 8:
+        if 'w' in board[y1][x1]:
+            break
+        if board[y1][x1] == 'wq' or board[y1][x1] == 'wb':
+            return True
+        x1 += 1
+        y1 += 1
+    while x1 >= 0 and y1 >= 0:
+        if 'w' in board[y1][x1]:
+            break
+        if board[y1][x1] == 'wq' or board[y1][x1] == 'wb':
+            return True
+        x1 -= 1
+        y1 -= 1
+    while x1 < 8 and y1 >= 0:
+        if 'w' in board[y1][x1]:
+            break
+        if board[y1][x1] == 'wq' or board[y1][x1] == 'wb':
+            return True
+        x1 += 1
+        y1 -= 1
+    while x1 >= 0 and y1 < 8:
+        if 'w' in board[y1][x1]:
+            break
+        if board[y1][x1] == 'wq' or board[y1][x1] == 'wb':
+            return True
+        x1 -= 1
+        y1 += 1
