@@ -175,8 +175,10 @@ def queen(x1, y1, x2, y2):
     return move
 
 def king(x1,y1,x2,y2):
-    if ((abs(x1-x2)==1 and abs(y1-y2)==1) or (abs(x1-x2)==1 and abs(y1-y2)==0) or (abs(x1-x2)==0 and abs(y1-y2)==1)) and not ischeck(x2,y2):
-        return True
+    if 'w' not in board[y2][x2]:
+        if ((abs(x1-x2)==1 and abs(y1-y2)==1) or (abs(x1-x2)==1 and abs(y1-y2)==0) or (abs(x1-x2)==0 and abs(y1-y2)==1)) and not ischeck(x2,y2):
+            return True
+    return False
 def ischeck(x, y):
     # returns True if check exist
     if board[y-1][x+1]=='bp' or board[y-1][x-1]=='bp':

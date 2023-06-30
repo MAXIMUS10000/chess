@@ -103,6 +103,12 @@ def ch(x, y):
                 print('Test')
                 l[y1][x1].configure(image='')
                 l[y2][x2].configure(image=rookimg)
+        if str(l[y1][x1]['image']) == str(rookimg):
+            print(y1, x1, y2, x2)
+            if rook(x1, y1, x2, y2):
+                print('Test')
+                l[y1][x1].configure(image='')
+                l[y2][x2].configure(image=rookimg)
         output()
     x1=-1
     y1=-1
