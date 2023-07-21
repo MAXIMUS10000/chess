@@ -1,5 +1,6 @@
 import tkinter
 from main import queen, knight, pawngo, bishop, rook, output, board, king
+from white_bot import bot
 from change import show
 
 window = tkinter.Tk()
@@ -109,6 +110,7 @@ def ch(x, y):
                 l[y1][x1].configure(image='')
                 l[y2][x2].configure(image=kingimg)
         output()
+        print(bot(1,1,1,1,True))
     x1=-1
     y1=-1
 

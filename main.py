@@ -4,7 +4,7 @@ from change import show
 kx=3
 ky=7
 board = [
-    ['__', '__', '__', '__', 'br', '__', '__', '__'],
+    ['__', '__', '__', '__', '__', '__', '__', '__'],
     ['bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp'],
     ['__', '__', '__', '__', '__', '__', '__', '__'],
     ['__', '__', '__', '__', '__', '__', '__', '__'],
@@ -108,15 +108,12 @@ def rook(x1, y1, x2, y2):
 def bishop(x1, y1, x2, y2):
     if 'w' in board[y2][x2]:
         return False
-
-    print('Test')
     if abs(x1 - x2) == abs(y1 - y2):
         b = True
         m = [y for y in range(min(y1, y2) + 1, max(y1, y2) - 1)]
         if len(m) == 0:
             m.append(y2)
         c = m[0]
-        print(c)
         for i in range(min(x2, x1) + 1, max((x1, x2)) - 1):
             print(board[c][i])
             if board[c][i] != '__':
@@ -134,7 +131,7 @@ def bishop(x1, y1, x2, y2):
 
 
 def knight(x1, y1, x2, y2):
-    print('knight')
+
     if 'w' in board[y2][x2]:
         return False
 
@@ -151,13 +148,13 @@ def knight(x1, y1, x2, y2):
 
 
 def queen(x1, y1, x2, y2):
-    print('Test')
+
     if 'w' in board[y2][x2]:
         return False
     move = True
 
     if y1 == y2 and x1 != x2:
-        print('Test')
+
         for i in range(min(x1, x2) + 1, max(x1, x2)):
             if board[y1][i] != '__' and i != x1:
                 move = False
@@ -166,7 +163,7 @@ def queen(x1, y1, x2, y2):
             board[y1][x1] = '__'
             board[y2][x2] = 'wq'
     elif x1 == x2 and y1 != y2:
-        print('Test')
+
         for i in range(min(y1, y2) + 1, max(y1, y2)):
             if board[i][x1] != '__' and i != y1:
                 move = False
@@ -195,11 +192,11 @@ def queen(x1, y1, x2, y2):
                 move = False
         else:
             move = False
-    if not move:
-        print(move)
-    if ischeck(kx,ky):
-
-        move=False
+    if move:
+        if ischeck(kx,ky):
+            board[y2][x2] = '__'
+            board[y1][x1] = "wq"
+            move=False
     return move
 
 def king(x1,y1,x2,y2):
@@ -287,13 +284,13 @@ def ischeck(x, y):
             return True
     for i in range(y-1, -1, -1):
         if 'w' in board[i][x] or board[i][x] == 'bn' or board[i][x] == 'bp' or board[i][x] == 'bk' or board[i][x] == 'bb':
-            print('test1')
+
             break
         if board[i][x] == 'bq' or board[i][x] == 'br':
             return True
     for i in range(y+1, 8):
         if 'w' in board[i][x] or board[i][x] == 'bn' or board[i][x] == 'bp' or board[i][x] == 'bk' or board[i][x] == 'bb':
-            print('test2')
+
             break
         if board[i][x] == 'bq' or board[i][x] == 'br':
             return True
