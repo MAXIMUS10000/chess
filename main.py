@@ -4,13 +4,13 @@ from change import show
 kx=3
 ky=7
 board = [
-    ['__', '__', '__', '__', '__', '__', '__', '__'],
+    ['br', 'bn', 'bb', 'bk', 'bq', 'bb', 'bn', 'br'],
     ['bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp'],
     ['__', '__', '__', '__', '__', '__', '__', '__'],
     ['__', '__', '__', '__', '__', '__', '__', '__'],
     ['__', '__', '__', '__', '__', '__', '__', '__'],
     ['__', '__', '__', '__', '__', '__', '__', '__'],
-    ['__', '__', '__', 'br', '__', '__', '__', '__'],
+    ['wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp'],
     ['wr', 'wn', 'wb', 'wk', 'wq', 'wb', 'wn', 'wr'],
 ]
 boardcopy=deepcopy(board)
@@ -58,7 +58,7 @@ def pawngo(x1, y1, x2, y2):
             return False
         return True
         # 1 move
-    elif y1 - y2 == 1 and x2 - x1 == 1 and board[y2][x2] != '__' and not ischeck(kx,ky):
+    elif y1 - y2 == 1 and abs(x2 - x1) == 1 and board[y2][x2] != '__' and not ischeck(kx,ky):
         board[y1][x1] = '__'
         board[y2][x2] = 'wp'
         if ischeck(kx,ky):
@@ -200,6 +200,7 @@ def queen(x1, y1, x2, y2):
     return move
 
 def king(x1,y1,x2,y2):
+    global kx,ky
     if 'w' not in board[y2][x2]:
         if ((abs(x1-x2)==1 and abs(y1-y2)==1) or (abs(x1-x2)==1 and abs(y1-y2)==0) or (abs(x1-x2)==0 and abs(y1-y2)==1)) and not ischeck(x2,y2):
             board[y1][x1]='__'
